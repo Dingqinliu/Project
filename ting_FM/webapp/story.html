@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>听书|播放</title>
+</head>
+<body>
+<main>
+    <h1></h1>
+    <audio controls></audio>
+</main>
+
+<script src="/js/util.js"></script>
+
+<script>
+    window.onload=function () {
+        var mainElement=document.querySelector("main");
+        var sid=getParameter("sid");
+        if (!sid){
+            alert("必须带有sid");
+            return;
+        }
+
+        var url=`/api/story-detail.json?sid=${sid}`;
+        ajax("get",url,function (result) {
+            if (!result.success){
+                alert(result.reason);
+                result;
+            }
+            var story=result.data;
+            mainElement.innerHTML=`
+            <h1>${story.name}</h1>
+            <span class="createdAt">${story.createdAt}</span>
+            <span class="count">${story.count}</span>
+            <audio controls src="/get-audio?sid=${sid}"></audio>`;
+        });
+    }
+</script>
+</body>
+</html>
