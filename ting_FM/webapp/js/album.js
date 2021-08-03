@@ -10,16 +10,7 @@ function getParameter(name) {
     return undefined;
 }
 
-/*
-<div class="album-meta">
-   <h1></h1>
-   <p></p>
-   <img class="cover">
-   <img class="header">
-   <span class="count"></span>
-   <span class="createdAt"></span>
- </div>
-*/
+
 var meta = document.querySelector(".album-meta");
 
 function updateAlbumMeta(album) {
@@ -76,14 +67,4 @@ window.addEventListener("load",function () {
     //1、拉取用户在线情况 同index.js
     //2、拉取当前专辑的详情
     fetchAlbumList()
-});
-
-
-
-
-
-window.addEventListener("load", function () {
-    // 1. 拉取用户在线情况，同 index.js 中
-    // 2. 拉取当前专辑的详情
-    fetchAlbumDetail();
 });
