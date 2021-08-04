@@ -3,6 +3,7 @@ package com.dingqinliu.service;
 import com.dingqinliu.dao.StoryDao;
 import com.dingqinliu.model.Story;
 
+import java.io.InputStream;
 import java.sql.SQLException;
 
 public class StoryService {
@@ -11,6 +12,8 @@ public class StoryService {
         return storyDao.selectOneUsingSid(sid);
     }
 
-    public void getAudio(int sidInt) {
+    public InputStream getAudio(int sid) throws SQLException{
+        return storyDao.selectOneAudioColumnUsingSid(sid);
     }
 }
+
