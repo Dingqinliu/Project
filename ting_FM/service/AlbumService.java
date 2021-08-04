@@ -34,4 +34,7 @@ public class AlbumService {
         return album;
     }
 
+    public int save(Integer uid, String name, String brief, String cover, String header) throws SQLException {
+        return albumDao.insert(uid,name,brief,cover,header);
+    }
 }
