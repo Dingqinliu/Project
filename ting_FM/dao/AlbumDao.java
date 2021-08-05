@@ -4,10 +4,7 @@ import com.dingqinliu.model.Album;
 import com.dingqinliu.model.Story;
 import com.dingqinliu.util.DButil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,5 +79,25 @@ public class AlbumDao {
             }
         }
         return albumList;
+    }
+
+    public int insert(Integer uid, String name, String brief, String cover, String header) throws SQLException {
+        try(Connection c=DButil.getConnection()){
+            String sql="INSERT INTO album (uid,name,brief,cover,header) VALUES (?,?,?,?,?)";
+            try(PreparedStatement s=c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
+                s.setInt(1,uid);
+                s.setString(2,name);
+                s.setString(3,brief);
+                s.setString(4,cover);
+                s.setString(5,header);
+
+                s.executeUpdate();
+
+                try(ResultSet rs=s.getGeneratedKeys()){
+                    rs.next();
+                    return rs.getInt(1);
+                }
+            }
+        }
     }
 }
