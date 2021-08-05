@@ -3,6 +3,7 @@ package com.dingqinliu.dao;
 import com.dingqinliu.model.Story;
 import com.dingqinliu.util.DButil;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -54,5 +55,20 @@ public class StoryDao {
             }
         }
         return storyList;
+    }
+
+    public InputStream selectOneAudioColumnUsingSid(int sid) throws SQLException{
+        try(Connection c=DButil.getConnection()){
+            String sql="SELECT audio FROM story WHERE sid=?";
+            try(PreparedStatement s=c.prepareStatement(sql)){
+                s.setInt(1,sid);
+                try(ResultSet rs=s.executeQuery()){
+                    if (!rs.next()){
+                        return null;
+                    }
+                    return rs.getBinaryStream("audio");
+                }
+            }
+        }
     }
 }
