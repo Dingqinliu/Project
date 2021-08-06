@@ -73,7 +73,7 @@ public class AbsApiServlet extends HttpServlet {
         throw new ApiException(405, "不支持的HTTP方法");
     }
 
-    protected Object doPostInternal(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ApiException{
+    protected Object doPostInternal(HttpServletRequest req, HttpServletResponse resp) throws SQLException, ApiException, IOException, ServletException {
         throw new ApiException(405, "不支持的HTTP方法");//暂定
     }
 }
