@@ -1,0 +1,9 @@
+CREATE TABLE `image_server`.`iamge_table` (
+  `imageId` INT NOT NULL AUTO_INCREMENT,
+  `imageName` VARCHAR(50) NULL,
+  `size` INT NULL,
+  `uploadTime` VARCHAR(50) NULL,
+  `contentType` VARCHAR(50) NULL,
+  `path` VARCHAR(1024) NULL,
+  `md5` VARCHAR(1024) NULL,
+  PRIMARY KEY (`imageId`));
